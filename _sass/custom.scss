@@ -92,7 +92,7 @@ pre {
   }
 
   a {
-    color: green;
+    color: #eb5757;
     text-decoration: none;
   
     &:visited {
@@ -108,7 +108,7 @@ pre {
 //Sidebar CSS
 #sidebar {
     margin-left: 3%;
-    border-left: 5px solid rgb(4, 117, 0);
+    border-left: 5px solid #af1e1e;
     position: fixed;
     top: 30%;
     width: 20vw;
@@ -199,11 +199,11 @@ div#toc ol li * {
 
 div#toc ol li::before {
     content: "# ";
-    color: green;
+    color: #e43b3b;
 }
 
 div#toc ol li *::before {
-    color: darken(green, 3%);
+    color: darken(#e43b3b, 5%);
 }
 
 //*Custom syntax highlight
