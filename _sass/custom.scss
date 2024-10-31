@@ -1,3 +1,43 @@
-h1, h2 {
-    color: red;
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+body {
+    background-color: #171717;
+    color: white;
+    font-family: 'IBM Plex Mono', 'Josefin Sans';
+}
+
+.site-header {
+    background-color: #1b1b1b;
+}
+
+.site-footer {
+    padding: 30px 0 0 0;
+}
+
+.site-title {
+    @include relative-font-size(1.625);
+    font-weight: 300;
+    line-height: $base-line-height * $base-font-size * 2.25;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    float: left;
+  
+    &,
+    &:visited {
+      color: white;
+    }
+  }
+
+  a {
+    color: green;
+    text-decoration: none;
+  
+    &:visited {
+      color: darken(green, 5%);
+    }
+  
+    &:hover {
+      color: green;
+      text-decoration: underline;
+    }
 }
