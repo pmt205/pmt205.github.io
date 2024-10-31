@@ -6,6 +6,10 @@ body {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .site-header {
     background-color: #1b1b1b;
 }
@@ -68,22 +72,37 @@ pre {
     }
 }
 // Adding 'Contents' headline to the TOC
-#markdown-toc::before {
-    content: "Contents";
-    font-weight: bold;
-}
 
 
 // Using numbers instead of bullets for listing
-#markdown-toc ul {
+#toc ul {
     list-style: decimal;
 }
 
-#markdown-toc {
-    border: 1px solid #aaa;
-    padding: 1.5em;
-    list-style: decimal;
-    display: inline-block;
+div#toc {
+    padding: 10px;
+    display: block;
+    position: fixed;
+}
+
+div#toc ol {
+    list-style: none;
+    list-style-position: inside;
+}
+
+div#toc ol li a {
+    color: white;
+}
+
+div#toc ol li {
+    margin-top: 10px;
+}
+div#toc ol li * {
+    margin-top: 5px;
+}
+div#toc ol li:before {
+    content: "# ";
+    color: green;
 }
 
 //*Custom syntax highlight

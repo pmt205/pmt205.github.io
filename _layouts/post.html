@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   
   <header class="post-header">
@@ -15,9 +16,8 @@ layout: default
       {%- endif -%}</p>
   </header>
   
-
+  
   <div class="post-content e-content" itemprop="articleBody">
-    <div id="toc"></div>
     {{ content}}
   </div>
 
@@ -30,6 +30,8 @@ layout: default
 <script src="/assets/js/toc.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
-      $('#toc').toc();
+      $('#toc').toc({ 
+        showEffect: 'slideDown' 
+      });
   });
   </script>

@@ -4,10 +4,14 @@
   {%- include head.html -%}
 
   <body>
-    
-    {%- include header.html -%}
 
+    {%- include header.html -%}
     <main class="page-content" aria-label="Content">
+      
+      {% if page.url contains ".html" %}
+        <div id="toc"></div>
+      {% endif %}
+      
       <div class="wrapper">
         {{ content }}
       </div>
