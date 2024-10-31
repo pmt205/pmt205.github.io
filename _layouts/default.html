@@ -9,7 +9,15 @@
     <main class="page-content" aria-label="Content">
       
       {% if page.url contains ".html" %}
-        <div id="toc"></div>
+        <div id="sidebar">
+          <div id="icons">
+            <i id="toTop" class="fa-solid fa-chevron-up" onclick="scrollToTop()">
+              <span class="scroll-up-tooltip">Scroll To Top</span>
+            </i>
+            
+          </div>
+          <div id="toc"></div>
+        </div>
       {% endif %}
       
       <div class="wrapper">
