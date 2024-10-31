@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: PMT Hack To learn
+title: PMT Hack To Learn
 description: >- # this means to ignore newlines until "baseurl:"
   Personal page to store my CTF/Labs Write-ups.
 #baseurl: "" # the subpath of your site, e.g. /blog
