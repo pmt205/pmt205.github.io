@@ -84,35 +84,29 @@ pre {
     letter-spacing: -1px;
     margin-bottom: 0;
     float: left;
-  
+
     &,
     &:visited {
-      color: white;
+        color: white;
     }
-  }
+}
 
-  a {
+a {
     color: #eb5757;
     text-decoration: none;
-  
+
     &:visited {
-      color: darken(green, 5%);
+        color: darken(#eb5757, 5%);
     }
-  
+
     &:hover {
-      color: green;
-      text-decoration: underline;
+        color: #eb5757;
+        text-decoration: underline;
     }
 }
 
 //Sidebar CSS
-#sidebar {
-    margin-left: 3%;
-    border-left: 5px solid #af1e1e;
-    position: fixed;
-    top: 30%;
-    width: 20vw;
-}
+
 
 #sidebar #icons {
     margin-left: 20px;
@@ -154,9 +148,11 @@ pre {
     position: absolute;
     z-index: 1;
 }
+
 #toTop:hover .scroll-up-tooltip {
     opacity: 1;
 }
+
 #toTop .scroll-up-tooltip::after {
     content: " ";
     position: absolute;
