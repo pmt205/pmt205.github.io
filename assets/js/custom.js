@@ -8,10 +8,6 @@ if (screen.width <= "800px"){
     var opentoc = document.getElementById("open-toc");
     const closegroup = [sidebar, closetoc, toTopMobile]
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     closegroup.forEach(element => {
         element.style.opacity = 0;
         element.style.visibility = "hidden";
