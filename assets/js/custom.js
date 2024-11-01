@@ -1,7 +1,9 @@
 function scrollToTop() {   
     document.getElementById("top").scrollIntoView();
 }
-if (screen.width <= "800px"){
+
+
+if (window.screen.width <= 800){
     var sidebar = document.getElementById("sidebar");
     var closetoc = document.getElementById("close-toc");
     var toTopMobile = document.getElementById("toTop-mobile");
