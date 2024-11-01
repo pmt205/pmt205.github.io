@@ -6,32 +6,30 @@ var sidebar = document.getElementById("sidebar");
 var closetoc = document.getElementById("close-toc");
 var toTopMobile = document.getElementById("toTop-mobile");
 var opentoc = document.getElementById("open-toc");
+const closegroup = [sidebar, closetoc, toTopMobile]
 
-sidebar.style.opacity = 0;
-sidebar.style.visibility = "hidden";
-closetoc.style.opacity = 0;
-closetoc.style.visibility = "hidden";
-toTopMobile.style.opacity = 0;
-toTopMobile.style.visibility = "hidden";
-
-opentoc.onclick = function(){
-    sidebar.classList.add('fade-in');
-    closetoc.classList.add('fade-in');
-    toTopMobile.classList.add('fade-in');
-    opentoc.classList.add('fade-out');
-    sidebar.classList.remove('fade-out');
-    closetoc.classList.remove('fade-out');
-    toTopMobile.classList.remove('fade-out');
-    opentoc.classList.remove('fade-in');
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-closetoc.onclick = function(){
-    sidebar.classList.add('fade-out');
-    closetoc.classList.add('fade-out');
-    toTopMobile.classList.add('fade-out');
-    opentoc.classList.add('fade-in');
-    sidebar.classList.remove('fade-in');
-    closetoc.classList.remove('fade-in');
-    toTopMobile.classList.remove('fade-in');
-    opentoc.classList.remove('fade-out');
+closegroup.forEach(element => {
+    element.style.opacity = 0;
+    element.style.visibility = "hidden";
+});
+
+opentoc.onclick = async function(){
+    closegroup.forEach(element => {
+        element.animate({opacity:[0,1],visibility:["hidden","visible"]},{duration:400,fill:'forwards'});
+        element.style.visibility = "visible";
+    });
+    opentoc.animate({opacity:[1,0],visibility:["visible","hidden"]},{duration:400,fill:'forwards'});
+    opentoc.style.visibility = "hidden";
+}
+
+closetoc.onclick = async function(){
+    closegroup.forEach(element => {
+        element.animate({opacity:[1,0],visibility:["visible","hidden"]},{duration:400,fill:'forwards'});
+    });
+    opentoc.animate({opacity:[0,1],visibility:["hidden","visible"]},{duration:400,fill:'forwards'});
+    opentoc.style.visibility = "visible";
 }

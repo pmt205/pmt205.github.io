@@ -7,38 +7,6 @@
         border-radius: 10px;
     }
 
-    .fade-in {
-        animation-name: fadein-animation;
-        animation-duration: 500ms;
-        animation-fill-mode: forwards;
-        visibility: visible !important;
-    }
-
-    .fade-out {
-        animation-name: fadeout-animation;
-        animation-duration: 500ms;
-        animation-fill-mode: forwards;
-        visibility: hidden !important;
-    }
-      
-    @keyframes fadein-animation {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeout-animation {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-
     #open-toc {
         transition: all 0.5s;
         color: #af1e1e;
@@ -67,19 +35,24 @@
         border: 4px solid #af1e1e;
         //border-left: none;
         margin: 0;
-        width: 150px;
+        max-width: 300px;
         background-color: rgb(37, 37, 37);
         padding: 10px 5px 8.5% 5px;
         border-radius: 1cap;
     }
     
+    #sidebar li {
+        max-width: 95%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     #sidebar #icons {
         text-align: right;
         margin-right: 10px;
         display: none;
     }
-
-    
 
     #toTop {
         visibility: hidden;
