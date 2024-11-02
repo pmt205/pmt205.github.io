@@ -28,12 +28,17 @@ github_username:  pmt205
 #permalink: /:title:output_ext
 # Build settings
 theme: minima
+collections:
+  posts:
+    output: true
+    permalink: /:title:output_ext
 plugins:
   - jekyll-feed
   - jekyll-toc
+  - jekyll-paginate
 markdown: kramdown
-paginate: 1
-paginate_path: "/page/:num/"
+paginate: 5
+paginate_path: "/page:num/"
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
