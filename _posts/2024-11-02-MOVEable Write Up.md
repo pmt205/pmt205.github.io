@@ -20,7 +20,7 @@ In this write-up, I will describe all the steps and the way that I think to solv
 
 Looks like the page just has a simple login page at first. When I tried to use some common credentials like `admin:admin` `admin:password`, none of them worked.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image.png>)
+![image.png](<./images/2024-11-02-MOVEable Write Up/image.png>)
 
 Dig into the source provided, we have the directory tree as below:
 
