@@ -20,6 +20,57 @@ html {
     padding: 30px 0 0 0;
 }
 
+//Search bar CSS
+#search-bar {
+    padding: 20px;
+}
+
+#search-box {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/assets/img/searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+
+//Post list at homepage
+.post-list {
+    margin: 10px 0;
+}
+
+.post-list li {
+    background-color: #222222;
+    padding: 20px;
+    box-shadow: 5px 5px 0px #eb5757, -6px -6px 0px black;
+}
+
+.post-desc {
+    color: #cccccc;
+    margin-top: 5px;
+}
+
+//Search page CSS
+#search-results {
+    list-style: none;
+    margin: 10px 0 0 0;
+}
+
+#search-results-label {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+#search-results li {
+    background-color: #222222;
+    padding: 20px;
+    box-shadow: 5px 5px 0px #eb5757, -6px -6px 0px black;
+}
+
 //Post page setup
 code {
     background-color: #87837826;
