@@ -6,6 +6,10 @@ body {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
 }
 
+.post {
+    word-wrap: break-word;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -81,6 +85,27 @@ code {
     border-radius: 3px;
     font-size: 85%;
     tab-size: 2;
+}
+
+.highlight {
+    background-color: #34343426 !important;
+}
+
+.post-img {
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+
+.post-img img {
+    border: 5px solid #525252;
+}
+
+.post-content p {
+    margin-top: 1em !important;
+}
+
+blockquote {
+    color: #c3c3c3 !important;
 }
 
 .post-content h1, h2, h3 {

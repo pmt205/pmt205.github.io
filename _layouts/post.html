@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  
+
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     <p class="post-meta">
@@ -12,11 +12,13 @@ layout: default
         {{ page.date | date: date_format }}
       </time>
       {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}</p>
+      • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card"
+          itemprop="name">{{ page.author }}</span></span>
+      {%- endif -%}
+    </p>
   </header>
-  
-  
+
+
   <div class="post-content e-content" itemprop="articleBody">
     {{ content}}
   </div>
@@ -25,9 +27,9 @@ layout: default
     <i id="close-toc" class="fa-solid fa-circle-xmark toc-mobile toc-mobile-close close-group"></i>
     <i id="toTop-mobile" class="fa-solid fa-circle-chevron-up toc-mobile close-group" onclick="scrollToTop()"></i>
   </div>
-  
+
   {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
+  {%- include disqus_comments.html -%}
   {%- endif -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
@@ -35,9 +37,9 @@ layout: default
 <script src="/assets/js/toc.js"></script>
 <script src="/assets/js/custom.js"></script>
 <script type="text/javascript">
-  $(document).ready(function() {
-      $('#toc').toc({ 
-        showEffect: 'fadeIn' 
-      });
+  $(document).ready(function () {
+    $('#toc').toc({
+      showEffect: 'fadeIn'
+    });
   });
-  </script>
+</script>

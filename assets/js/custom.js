@@ -1,7 +1,13 @@
+window.addEventListener('load', function () {
+    postImgList = document.getElementsByTagName("img");
+    for (var postImg of postImgList) {
+        postImg.parentElement.classList.add("post-img");
+    }
+})
+
 function scrollToTop() {   
     document.getElementById("top").scrollIntoView();
 }
-
 
 if (window.screen.width <= 800){
     var sidebar = document.getElementById("sidebar");

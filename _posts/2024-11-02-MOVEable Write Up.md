@@ -4,8 +4,6 @@ title:  "MOVEable Write Up"
 categories: CTF
 description: My write up for MOVEable CTF challenge
 ---
-# MOVEable CTF Write-up
-
 # Introduction
 
 The goal is to find a flag, which is hidden somewhere 🤷‍♂️
