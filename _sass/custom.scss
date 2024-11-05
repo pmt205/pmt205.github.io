@@ -193,7 +193,7 @@ a {
     text-decoration: none;
 
     &:visited {
-        color: darken(#eb5757, 5%);
+        color: #eb5757;//darken(#eb5757, 5%);
     }
 
     &:hover {
