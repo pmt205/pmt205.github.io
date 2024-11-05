@@ -14,7 +14,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 .site-header {
     background-color: #1b1b1b;
 }
@@ -51,6 +50,13 @@ html {
     background-color: #222222;
     padding: 20px;
     box-shadow: 5px 5px 0px #eb5757, -6px -6px 0px black;
+    transition: 0.5s;
+}
+
+.post-list li:hover {
+    background-color: #222222;
+    padding: 20px;
+    box-shadow: 5px 5px 0px #eb5757, -6px -6px 0px #eb5757;
 }
 
 .post-desc {
@@ -58,6 +64,17 @@ html {
     margin-top: 5px;
 }
 
+.category {
+    font-size: 14px;
+    color: #828282;
+    margin-left: 10px;
+}
+
+.sub-info p {
+    display: inline;
+    font-size: 14px;
+    color: #828282;
+}
 //Search page CSS
 #search-results {
     list-style: none;

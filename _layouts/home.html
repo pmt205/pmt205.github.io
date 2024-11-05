@@ -24,7 +24,11 @@ layout: default
               {{ post.title | escape }}
           </a>
           </h3>
-          <span class="post-meta">{{ post.date | date: date_format }}</span>
+          <div class="sub-info">
+            <span class="post-meta">{{ post.date | date: date_format }}</span>
+            <i class="fa-regular fa-folder-open category"></i>
+            <p> {{ post.categories }} </p>
+          </div>
           <p class="post-desc">{{ post.description }}</p>
           {%- if site.show_excerpts -%}
           {{ post.excerpt }}
