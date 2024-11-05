@@ -189,7 +189,7 @@ If you’re unlucky enough to receive all 5 `404` results, just retry until you 
 ![image.png](<../assets/images/2024-11-05-Webshell Race Condition/image%2013.png>)
 
 # References
-- https://portswigger.net/web-security/file-upload#exploiting-file-upload-race-conditions
-- https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-race-condition
-- https://www.youtube.com/watch?v=UaQKMR5XOXk
-- https://aaryangolatkar.medium.com/portswigger-web-shell-upload-via-race-condition-easy-method-63114ce707e5
+- [https://portswigger.net/web-security/file-upload#exploiting-file-upload-race-conditions](https://portswigger.net/web-security/file-upload#exploiting-file-upload-race-conditions)
+- [https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-race-condition](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-race-condition)
+- [https://www.youtube.com/watch?v=UaQKMR5XOXk](https://www.youtube.com/watch?v=UaQKMR5XOXk)
+- [https://aaryangolatkar.medium.com/portswigger-web-shell-upload-via-race-condition-easy-method-63114ce707e5](https://aaryangolatkar.medium.com/portswigger-web-shell-upload-via-race-condition-easy-method-63114ce707e5)
