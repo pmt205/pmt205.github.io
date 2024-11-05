@@ -8,7 +8,7 @@
       for (var i = 0; i < results.length; i++) {  // Iterate over the results
         var item = store[results[i].ref];
         appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
-        appendString += '<span class="post-meta">' + item.date + '</span><p class="post-desc">' + item.content.substring(0, 150) + '...</p></li>';
+        appendString += '<div class="sub-info"> <span class="post-meta">' + item.date + '</span><i class="fa-regular fa-folder-open category"></i><p>' + item.categories + '</p></div><p class="post-desc">' + item.content.substring(0, 150) + '...</p></li>';
 
       }
 
