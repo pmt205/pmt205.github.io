@@ -64,10 +64,14 @@ html {
     margin-top: 5px;
 }
 
-.category {
+.category, .tags {
     font-size: 14px;
     color: #828282;
     margin-left: 10px;
+}
+
+.tag-item:not(:last-child):after {
+    content: ",";
 }
 
 .sub-info p {

@@ -28,6 +28,10 @@ layout: default
             <span class="post-meta">{{ post.date | date: date_format }}</span>
             <i class="fa-regular fa-folder-open category"></i>
             <p> {{ post.categories }} </p>
+            <i class="fa-solid fa-tag tags"></i>
+            {%- for tag in post.tags -%}
+              <p class="tag-item"> {{tag}}</p>
+            {%- endfor -%}
           </div>
           <p class="post-desc">{{ post.description }}</p>
           {%- if site.show_excerpts -%}

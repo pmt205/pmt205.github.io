@@ -2,6 +2,7 @@
 layout: post
 title:  "Web shell upload via race condition"
 categories: Lab
+tags: FileUpload RaceCondition
 description: My write up for PortSwigger lab "Web shell upload via race condition"
 ---
 **Link:** [https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-race-condition](https://portswigger.net/web-security/file-upload/lab-file-upload-web-shell-upload-via-race-condition)

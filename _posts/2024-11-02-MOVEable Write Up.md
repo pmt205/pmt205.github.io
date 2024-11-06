@@ -2,6 +2,7 @@
 layout: post
 title:  "MOVEable Write Up"
 categories: CTF
+tags: Deserialization Python SSTI Flask SQLInjection
 description: My write up for MOVEable CTF challenge
 ---
 # Introduction

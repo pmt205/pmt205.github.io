@@ -15,6 +15,7 @@ layout: default
       "{{ post.url | slugify }}": {
         "title": "{{ post.title | xml_escape }}",
         "categories": "{{ post.categories }}",
+        "tags" : '{{ post.tags | jsonify}}',
         "date" : "{{ post.date | date: date_format | xml_escape }}",
         "content": {{ post.description | strip_html | strip_newlines | jsonify }},
         "url": "{{ post.url | xml_escape }}"
