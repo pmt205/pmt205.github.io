@@ -3,7 +3,6 @@ layout: post
 title:  "Welcome to Jekyll!"
 date:   2024-10-31 10:53:51 +0700
 categories: jekyll update
-published: false
 description: Test post blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah 
 ---
 {:toc}
