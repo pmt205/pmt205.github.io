@@ -6,6 +6,47 @@ body {
     font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
 }
 
+.title-div {
+    width: max-content;
+}
+
+.site-title {
+    position: relative;
+    width: 100%;
+    letter-spacing: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-right: 2px;
+    animation: typing 1s steps(15);
+}
+
+.site-title::after{
+    content:'';
+    height: 50%;
+    width: 1px;
+
+    position: absolute;
+    
+    padding-left: 2px;
+    right: 0;
+    top: 26%;
+
+    background-color: white;
+    animation: cursor .5s step-end infinite alternate;
+}
+
+@keyframes cursor {
+    50% {
+        background-color: transparent;
+    }
+}
+
+@keyframes typing {
+    from { 
+        width: 0;
+    }
+}
+
 .post {
     word-wrap: break-word;
 }
